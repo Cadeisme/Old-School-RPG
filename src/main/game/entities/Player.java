@@ -25,7 +25,7 @@ public class Player extends Creature{
 		
 		
 		try{
-			sprite = ImageIO.read(new File("Assets/Temp.png")); //tries to set the player image
+			sprite = ImageIO.read(new File("Assets/test.png")); //tries to set the player image
 		}catch (IOException e){
 			e.printStackTrace(); //if not returns the error
 		}

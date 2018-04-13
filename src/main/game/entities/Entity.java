@@ -32,29 +32,25 @@ public class Entity {
 		switch(GameLogic.lastKey){
 		
 		case Preferences.down:
-			if(this.y + h + Player.moveSpeed >= other.y && this.y + Player.moveSpeed < other.y && (this.x + w + Player.moveSpeed >= other.x && this.x + Player.moveSpeed < other.x || this.x + Player.moveSpeed <= other.x + w && this.x + w + Player.moveSpeed > other.x)){
-				move(0, -Player.moveSpeed);
+			if(this.y + h >= other.y && this.y < other.y && (this.x + w >= other.x && this.x < other.x || this.x <= other.x + w && this.x + w > other.x)){
 				return true;
 			}
 			break;
 		
 		case Preferences.up:
-			if(this.y + Player.moveSpeed <= other.y + h && this.y + h + Player.moveSpeed > other.y + h && (this.x + w + Player.moveSpeed >= other.x && this.x + Player.moveSpeed < other.x || this.x + Player.moveSpeed <= other.x + w && this.x + w + Player.moveSpeed > other.x)){
-				move(0, Player.moveSpeed);
+			if(this.y <= other.y + h && this.y + h> other.y + h && (this.x + w >= other.x && this.x < other.x || this.x <= other.x + w && this.x + w > other.x)){
 				return true;
 			}
 			break;
 			
 		case Preferences.right:
-			if(this.x + w + Player.moveSpeed >= other.x && this.x + Player.moveSpeed < other.x && (this.y + Player.moveSpeed <= other.y + h && this.y + h + Player.moveSpeed > other.y + h || this.y + h + Player.moveSpeed >= other.y && this.y + Player.moveSpeed < other.y)){
-				move(-Player.moveSpeed, 0);
+			if(this.x + w >= other.x && this.x < other.x && (this.y <= other.y + h && this.y + h > other.y + h || this.y + h >= other.y && this.y < other.y)){
 				return true;
 			}
 			break;
 			
 		case Preferences.left:
-			if(this.x + Player.moveSpeed <= other.x + w && this.x + w + Player.moveSpeed > other.x && (this.y + Player.moveSpeed <= other.y + h && this.y + h + Player.moveSpeed > other.y + h || this.y + h + Player.moveSpeed >= other.y && this.y + Player.moveSpeed < other.y)){
-				move(Player.moveSpeed, 0);
+			if(this.x <= other.x + w && this.x + w > other.x && (this.y <= other.y + h && this.y + h > other.y + h || this.y + h >= other.y && this.y < other.y)){
 				return true;
 			}
 			break;
