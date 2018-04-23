@@ -19,6 +19,8 @@ public class Player extends Creature{
 	
 	public static int moveSpeed = 2;
 	
+	int posDifOne, posDifTwo;
+	
 	//Constructors
 	public Player(int x, int y, int w, int h, int hp) {
 		super(x, y, w, h, hp);
@@ -35,8 +37,8 @@ public class Player extends Creature{
 	
 	@Override
 	public void tick(ListIterator<Entity> itr){
-		
-		if(KeyManager.isKeyPressed(Preferences.down)){ //TODO change the method so that the character doesn't clip through platforms
+
+		/*if(KeyManager.isKeyPressed(Preferences.down)){ //TODO change the method so that the character doesn't clip through platforms
 			
 			this.move(0, moveSpeed); //if i press s the character moves down
 			
@@ -73,7 +75,7 @@ public class Player extends Creature{
 		}
 
 		
-		
+		*/
 	}
 	
 	@Override
