@@ -12,18 +12,17 @@ import main.game.GameLogic;
 import main.game.display.Renderer;
 import main.game.input.KeyManager;
 import main.game.preferences.Preferences;
+import main.game.utils.Vector;
 
 public class Player extends Creature{
 
 	private BufferedImage sprite;
 	
-	public static int moveSpeed = 2;
-	
 	int posDifOne, posDifTwo;
 	
 	//Constructors
 	public Player(int x, int y, int w, int h, int hp) {
-		super(x, y, w, h, hp);
+		super(x, y, w, h, hp, false);
 		
 		
 		try{
@@ -38,44 +37,27 @@ public class Player extends Creature{
 	@Override
 	public void tick(ListIterator<Entity> itr){
 
-		/*if(KeyManager.isKeyPressed(Preferences.down)){ //TODO change the method so that the character doesn't clip through platforms
+		if(KeyManager.isKeyPressed(Preferences.down)){ //TODO change the method so that the character doesn't clip through platforms
+			this.v.setVector(0, 1);
 			
-			this.move(0, moveSpeed); //if i press s the character moves down
-			
-			this.collisionDetect(Renderer.tes);
-			
-			GameLogic.lastKey = Preferences.down;
+			this.move(v);
 		}
 		
 		if(KeyManager.isKeyPressed(Preferences.up)){
 			
-			this.move(0, -moveSpeed); //if i press s the character moves down
-			
-			this.collisionDetect(Renderer.tes);
-			
-			GameLogic.lastKey = Preferences.up;
 		}
 		
 		if(KeyManager.isKeyPressed(Preferences.left)){
 			
-			this.move(-moveSpeed, 0); //if i press a the character moves left
-			
-			this.collisionDetect(Renderer.tes);
-			
-			GameLogic.lastKey = Preferences.left;
 		}
 		
 		if(KeyManager.isKeyPressed(Preferences.right)){
 			
-			this.move(moveSpeed, 0); //if i press d the character moves right		
 			
-			this.collisionDetect(Renderer.tes);
-			
-			GameLogic.lastKey = Preferences.right;
 		}
 
 		
-		*/
+		
 	}
 	
 	@Override
