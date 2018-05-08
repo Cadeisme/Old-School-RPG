@@ -18,7 +18,8 @@ public class Player extends Creature{
 
 	private BufferedImage sprite;
 	
-	int posDifOne, posDifTwo;
+	int posDifOne, posDifTwo; 
+	static int step = 2;
 	
 	//Constructors
 	public Player(int x, int y, int w, int h, int hp) {
@@ -38,22 +39,23 @@ public class Player extends Creature{
 	public void tick(ListIterator<Entity> itr){
 
 		if(KeyManager.isKeyPressed(Preferences.down)){ //TODO change the method so that the character doesn't clip through platforms
-			this.v.setVector(0, 1);
-			
-			this.move(v);
+			this.collisionDetect(GameLogic.entities.get(1));
+			this.move(0, step);																																																	
 		}
 		
 		if(KeyManager.isKeyPressed(Preferences.up)){
-			
+			this.collisionDetect(GameLogic.entities.get(1));
+			this.move(0, -step);
 		}
 		
 		if(KeyManager.isKeyPressed(Preferences.left)){
-			
+			this.collisionDetect(GameLogic.entities.get(1));
+			this.move(-step, 0);
 		}
 		
 		if(KeyManager.isKeyPressed(Preferences.right)){
-			
-			
+			this.collisionDetect(GameLogic.entities.get(1));
+			this.move(step, 0);
 		}
 
 		

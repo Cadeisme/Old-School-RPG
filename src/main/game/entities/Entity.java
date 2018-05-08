@@ -7,7 +7,7 @@ import main.game.utils.Vector;
 public class Entity {
 	
 	private int x, y, w, h;
-	private int posDiffOne, posDiffTwo, xPosDiff, yPosDiff;
+	private int posDiffOne, posDiffTwo, xPosDiff, yPosDiff, projection;
 	protected boolean movable;
 	private boolean intersectsX, intersectsY;
 	Vector v = new Vector();
@@ -22,38 +22,125 @@ public class Entity {
 	
 	public void collisionDetect(Entity other){
 		
-	if(other.getMovable()){	
 		
 		//Checks distance on the x axis
 		
 		posDiffOne = other.x - (this.x + this.w);
 		posDiffTwo = (other.x + other.w) - this.x;
-		
+				
 		xPosDiff = Math.abs(posDiffOne) < Math.abs(posDiffTwo) ? posDiffOne: posDiffTwo;
-		
+				
 		//Checks distance on the y axis
-		
+				
 		posDiffOne = other.y - (this.y - this.h);
 		posDiffTwo = (other.y-other.h) - this.y;
-			
+					
 		yPosDiff = Math.abs(posDiffOne) < Math.abs(posDiffTwo) ? posDiffOne : posDiffTwo;
 
-		//intersectsX = 
+		//Check intersection distances
+		intersectsX = Math.abs(xPosDiff) < Integer.signum(xPosDiff)*(this.v.getX()-other.v.getX());
+		intersectsY = Math.abs(yPosDiff) < Integer.signum(yPosDiff)*(this.v.getY()-other.v.getY());
+				
+		if(intersectsX && intersectsY){
+			intersectsX = Math.abs(xPosDiff) < Math.abs(yPosDiff);
+		}
 		
+		if(other.getMovable()){	
 		
+		if(intersectsX){
+			//Collide on x axis
+			int velocityRemainder = this.v.getX() - other.v.getX() - xPosDiff;
+				if(xPosDiff < 0){
+					//on my left side
+					
+					
+					int absVX1 = Math.abs(this.v.getX());
+					int absVX2 = Math.abs(other.v.getX());
+					
+					//int velocityRemainder = this.v.x - other.v.x - xPosDiff;
+					
+					int additionalVelocity;
+					
+					
+					// sqrt((mv^2)/(m1+m2)) = v
+					
+					if(absVX1 > absVX2){
+						
+						//additionalVelocity = Integer.signum(velocityRemainder) * Math.sqrt((this.m*Math.pow(velocityRemainder,2))/(this.m+other.m));
+							
+					}else{
+						
+						//additionalVelocity = Integer.signum(velocityRemainder) * Math.sqrt((other.m*Math.pow(velocityRemainder,2))/(this.m+other.m));
+						
+					}
+					
+				}else{
+					//on my right side
+					
+					
+				}
+		}else{
+			//Collide on y axis
+				if(yPosDiff < 0){
+					//on my bottom
+				}else{
+					//on my top
+				}
+		}
+	}
+		
+		else{
+			//Non moveable entity
+				
+			if(intersectsX){
+
+				if(xPosDiff < 0){ //on left side
+
+					projection = this.x + this.w + Player.step; 
+
+					if(projection > other.x){
+						this.move(xPosDiff, 0);
+					}
+
+				}
+
+				else{
+					projection = this.x - Player.step;
+
+					if(projection < other.x){
+						this.move(-xPosDiff, 0);
+					}
+				}
+
+
+			}
+
+			else{
+
+				if(yPosDiff < 0){ //below
+					
+					projection = this.y + this.h + Player.step;
+
+					if(projection < other.y + other.h){
+						this.move(0, yPosDiff);
+					}
+
+				}
+
+				else{
+					projection = this.y - Player.step;
+
+					if(projection > other.y){
+						this.move(0, -yPosDiff);
+					}
+
+				}
+
+
+			}
+		}
 		
 	}
-	
-	else{
-	
-		
-		
-	}
-		
-		
-		
-	}
-	
 	
 	
 	public void setPos(int x, int y){
