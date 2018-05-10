@@ -45,7 +45,7 @@ public class Entity {
 			intersectsX = Math.abs(xPosDiff) < Math.abs(yPosDiff);
 		}
 		
-		if(other.getMovable()){	
+		/*if(other.getMovable()){	
 		
 		if(intersectsX){
 			//Collide on x axis
@@ -89,7 +89,7 @@ public class Entity {
 		}
 	}
 		
-		else{
+		else{*/
 			//Non moveable entity
 				
 			if(intersectsX){
@@ -138,7 +138,7 @@ public class Entity {
 
 
 			}
-		}
+		//}
 		
 	}
 	
